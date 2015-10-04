@@ -1,0 +1,30 @@
+Copyright (c) 2015 Zachary Layng
+
+MIT License (MIT)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+
+The charts generated  in this software package are intended to reflect the
+critical attributes of the standard charts first developed by Dr. Ogden R. Lindsley.
+The number of log-based cycles on the y-axis,
+amount and distribution of calendar time intervals on the x-axis, number of celeration periods,
+and aspect ratio are designed to be consistent with the attributes described by Dr. Lindsley.
+This log chart is a likeness of the Standard Celeration Chart © Behavior Research Company
+(http://www.behaviorresearchcompany.com/).
