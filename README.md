@@ -146,7 +146,7 @@ function handleQueryResponse(response) {
 [Preview example page.](https://htmlpreview.github.io/?https://github.com/mightbejosh/celerationcharts/blob/master/linked-sheet-example.html)
 
 
-Please see (https://developers.google.com/chart/interactive/docs/spreadsheets) for more information.
+Please see https://developers.google.com/chart/interactive/docs/spreadsheets for more information.
 
 
 
