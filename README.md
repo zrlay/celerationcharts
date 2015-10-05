@@ -60,7 +60,7 @@ Load the Visualization API and instantiate the chart.
         overriden.
         options = {};
 
-        // Instantiate and draw our chart, passing in the options and chart height.
+        // Instantiate with chart height and draw the chart, passing in data and options.
         var programmaticChart = new CelerationChart(document.getElementById('programmatic_chart_div'), 600);
         programmaticChart.draw(data, options)
     }
@@ -68,7 +68,10 @@ Load the Visualization API and instantiate the chart.
 </script>
 ```
 
-### Loading your Data
+When instantiating a CelerationChart, you **must** provide the chart `height` in addition to the `DOM element` in which
+ the chart will be drawn in order for the chart to maintain the aspect ratio of the standard chart.
+
+### Loading existing data
 
 Please refer to the [DataTable section in the Google Charts documentation](https://developers.google
 .com/chart/interactive/docs/datatables_dataviews).
@@ -100,4 +103,86 @@ The celeration chart acts as a scatter chart. For a single series chart, each ro
      }
  };
  ```
+
+[View example code.](index.html)
+
+[Preview example page.](https://htmlpreview.github.io/?https://github.com/mightbejosh/celerationcharts/blob/master/index.html)
+
+### Loading data from a Google Spreadsheet
+This chart can accept a remote data source, such as a google spreadsheet.
+
+```
+function drawChart() {
+    // Query the data from a remote Google Sheet.
+    var query = new google.visualization.Query(
+            'https://docs.google.com/spreadsheets/d/16-HQLHBJxGLXAgKQWIxq-9Z5dq51fQ1SnBLTBRpRTfQ/gviz/tq?gid=0&headers=1');
+    query.send(handleQueryResponse);
+}
+
+
+function handleQueryResponse(response) {
+    if (response.isError()) {
+        alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+        return;
+    }
+
+    // Create a data table from the remote spreadsheet.
+    var data = response.getDataTable();
+
+    // Set chart options
+    options = {
+        hAxis: {format: '#'},
+        legend: {position: 'none'},
+    };
+
+    // Instantiate and draw our chart, passing in options.
+    programmaticChart = new CelerationChart(document.getElementById('programmatic_chart_div'), 600);
+    programmaticChart.draw(data, options);
+}
+```
+
+[View example code.](linked-sheet-example.html)
+
+[Preview example page.](https://htmlpreview.github.io/?https://github.com/mightbejosh/celerationcharts/blob/master/linked-sheet-example.html)
+
+
+Please see (https://developers.google.com/chart/interactive/docs/spreadsheets) for more information.
+
+
+
+### Events, and other methods
+The Celeration chart is a simple wrapper around the google ChartWrapper that overrides various display and data
+settings to closely imitate the standard celeration chart.
+
+You can use all of the Google Visualization API, and ScatterChart, events and methods.
+
+To access the ChartWrapper:
+```
+  chart = new CelerationChart(id, height)
+  wrapper = chart.chartWrapper
+```
+
+To access the chart:
+```
+  chartInstance = wrapper.getChart()
+```
+
+
+### Convenience methods
+
+Some convenience methods are available on the wrapper, which may be useful for typical celeration chart usage.
+
+##### Trendlines
+Turn on trendlines for any number of series:
+```
+  chart.setTrendlines([0,1,2])
+```
+Turn on trendlines for all series:
+```
+  chart.setTrendlines()
+```
+Turn off all trendlines:
+```
+  chart.removeTrendlines()
+```
 

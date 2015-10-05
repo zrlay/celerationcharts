@@ -1,0 +1,56 @@
+<html>
+<head>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <!--Load the Celeration Chart-->
+    <script type="text/javascript" src="js/celerationchart.min.js"></script>
+    <script type="text/javascript">
+
+        var programmaticChart;
+
+        // Load the Visualization API and the scatter chart package.
+        google.load('visualization', '1.1');
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            // Query the data from a remote Google Sheet.
+            var query = new google.visualization.Query(
+                    'https://docs.google.com/spreadsheets/d/16-HQLHBJxGLXAgKQWIxq-9Z5dq51fQ1SnBLTBRpRTfQ/gviz/tq?gid=0&headers=1');
+            query.send(handleQueryResponse);
+        }
+
+        function handleQueryResponse(response) {
+            if (response.isError()) {
+                alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+                return;
+            }
+            // Create a data table from the remote spreadsheet.
+            var data = response.getDataTable();
+            // Set chart options
+            options = {
+                hAxis: {format: '#'},
+                legend: {position: 'none'},
+            };
+
+            // Instantiate and draw our chart, passing in some options.
+            programmaticChart = new CelerationChart(document.getElementById('programmatic_chart_div'), 600);
+            programmaticChart.draw(data, options);
+        }
+
+    </script>
+
+    <title>Example Celeration Chart</title>
+</head>
+<body>
+<h3>Chart with Google Spreadsheet data source</h3>
+
+<div id="programmatic_chart_div"></div>
+<p>
+    Source for chart (public):<br/>
+    <a href="https://docs.google.com/spreadsheets/d/16-HQLHBJxGLXAgKQWIxq-9Z5dq51fQ1SnBLTBRpRTfQ/edit?usp=sharing">
+        https://docs.google.com/spreadsheets/d/16-HQLHBJxGLXAgKQWIxq-9Z5dq51fQ1SnBLTBRpRTfQ/edit?usp=sharing
+    </a>
+</p>
+</body>
+</html>

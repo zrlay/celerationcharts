@@ -5,9 +5,11 @@
     <!--Load the Celeration Chart-->
     <script type="text/javascript" src="js/celerationchart.min.js"></script>
     <script type="text/javascript">
-        // Load the Visualization API and the scatter chart package.
-        google.load('visualization', '1.1', {packages: ['corechart']});
 
+        var programmaticChart;
+
+        // Load the Visualization API and the scatter chart package.
+        google.load('visualization', '1.1');
         // Set a callback to run when the Google Visualization API is loaded.
         google.setOnLoadCallback(drawChart);
 
@@ -52,8 +54,17 @@
             };
 
             // Instantiate and draw our chart, passing in some options.
-            var programmaticChart = new CelerationChart(document.getElementById('programmatic_chart_div'), 600);
-            programmaticChart.draw(data, options)
+            programmaticChart = new CelerationChart(document.getElementById('programmatic_chart_div'), 600);
+            programmaticChart.draw(data, options);
+        }
+
+        function toggleTrendlines() {
+            if (programmaticChart.chartWrapper.getOption('trendlines')) {
+                programmaticChart.removeTrendlines()
+            } else {
+                // Pass the series we want trendlines for.
+                programmaticChart.setTrendlines([0,])
+            }
         }
 
     </script>
@@ -62,6 +73,8 @@
 </head>
 <body>
 <div id="programmatic_chart_div"></div>
-<p>This page demonstrates hosting a table visualization.</p>
+<br/>
+<button id="toggle_trendline" type="button" onclick="toggleTrendlines()">Toggle Trendlines</button>
+
 </body>
 </html>
