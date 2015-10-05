@@ -31,17 +31,17 @@ You must load the AJAX API.
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 ```
 
-Include the minified celeration chart file.
+Include the minified celeration chart file from this repo.
 ```
 <script type="text/javascript" src="celerationchart.min.js"></script>
 ```
 
-Load the Visualization API and instantiate the chart.
+Load the Visualization API v 1.1 and instantiate the chart.
 ```
 <script type="text/javascript">
 
-    // Load the Visualization API and the base chart package.
-    google.load('visualization', '1', {packages: ['corechart']});
+    // Load the Visualization API. Use version 1.1.
+    google.load('visualization', '1.1');
 
 
     // Set a callback to run when the Google Visualization API is loaded.
@@ -56,13 +56,12 @@ Load the Visualization API and instantiate the chart.
         // Create the data table.
         var data = new google.visualization.DataTable();
 
-        // Set any additional chart options. Style and axes options specific to the celeration chart will not get
-        overriden.
+        // Set any additional chart options. Styles that conflict with the chart standards will be silently ignored.
         options = {};
 
         // Instantiate with chart height and draw the chart, passing in data and options.
-        var programmaticChart = new CelerationChart(document.getElementById('programmatic_chart_div'), 600);
-        programmaticChart.draw(data, options)
+        var chart = new CelerationChart(document.getElementById('chart_div'), 600);
+        chart.draw(data, options)
     }
 
 </script>
@@ -186,3 +185,6 @@ Turn off all trendlines:
   chart.removeTrendlines()
 ```
 
+### Todo
+
+- Add the other standard chart time scales.
